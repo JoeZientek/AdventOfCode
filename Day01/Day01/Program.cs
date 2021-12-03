@@ -10,7 +10,7 @@ namespace Day01
         {
             // part A
 
-            var input = File.ReadAllLines("input.txt").Select(x => int.Parse(x)).ToArray(); ;
+            var input = File.ReadAllLines("input.txt").Select(x => int.Parse(x)).ToArray();
 
             var count = 0;
 
