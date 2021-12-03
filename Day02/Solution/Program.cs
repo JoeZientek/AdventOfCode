@@ -12,6 +12,7 @@ namespace Solution
 
             var horizontal = 0;
             var depth = 0;
+            var aim = 0;
 
             foreach(string line in input)
             {
@@ -19,24 +20,26 @@ namespace Solution
                 {
                     var value = Int32.Parse(line.Replace("forward", ""));
                     horizontal = horizontal+value;
+                    depth = depth + (aim * value);
                 }
 
                 if(line.Contains("up"))
                 {
                     var value = Int32.Parse(line.Replace("up", ""));
-                    depth = depth - value;
+                    //depth = depth - value;
+                    aim = aim - value;
                 }
 
                 if(line.Contains("down"))
                 {
                     var value = Int32.Parse(line.Replace("down", ""));
-                    depth = depth + value;
+                    //depth = depth + value;
+                    aim = aim + value;
                 }
             }
 
             Console.WriteLine(horizontal * depth);
-            //2215080
-            
+
         }
     }
 }
