@@ -34,7 +34,7 @@ namespace Solution
             foreach(int bit in bitOneCounts)
             {
                 // if the count of 1s is greater than half the total number of input values ...
-                if(bit > (input.Length/2))
+                if(bit >= (input.Length/2))
                 {
                     gammaBinary += "1";
                     epsilonBinary += "0";
@@ -52,6 +52,30 @@ namespace Solution
             var pConsumption = gammaDecimal * epsilonDecimal;
             
             Console.WriteLine(pConsumption);
+
+            // part 2 
+            var oxygenList = input.ToList();
+            foreach(int bit in Enumerable.Range(1, input[1].Length))
+            {
+                if(oxygenList.Count > 1)
+                {
+                    oxygenList = oxygenList.Where(stringToCheck => stringToCheck.Substring(bit - 1, 1).Equals(gammaBinary.Substring(bit-1, 1))).ToList();
+                }
+            }
+
+            var carbonList = input.ToList();
+            foreach(int bit in Enumerable.Range(1, input[1].Length))
+            {
+                if(carbonList.Count > 1)
+                {
+                    carbonList = carbonList.Where(stringToCheck => stringToCheck.Substring(bit - 1, 1).Equals(epsilonBinary.Substring(bit-1, 1))).ToList();
+                }
+            }
+
+            var oxygenDecimal = Convert.ToInt32(oxygenList[0], 2);
+            var carbonDecimal = Convert.ToInt32(carbonList[0], 2);
+            
+            Console.WriteLine(oxygenDecimal*carbonDecimal);
         }
     }
 }
